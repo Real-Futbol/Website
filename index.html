@@ -16,96 +16,71 @@
 
         body {
             font-family: 'Ubuntu', sans-serif;
-            background: #ffffff;
-            min-height: 100vh;
-            overflow-x: hidden;
-            color: #333333;
+            background: #FFFFFF;
+            color: #F0F0F0;
         }
 
-        .hero-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+        .logoSection {
+            text-align: center;
+            background: #000000;
             padding: 2rem;
         }
 
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-           
-            pointer-events: none;
+        .heroContainer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
         }
 
+        .heroSection {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            text-align: left;
+            max-width: 800px;
+            min-width: 320px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #000000;
+            padding-bottom: 10px;
+        }
+
+        .heroSection > h2 {
+            font-size: 1.25em;
+        }
+
+        .highlight {
+            color: #FF2700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .dot {
+            color: #000000;
+        }
+
+        .subtext {
+            margin-top: 2rem;
+            font-size: 1.25rem;
+            color: #475569;
+            max-width: 800px;
+            line-height: 1.6;
+        }
 
         .container {
-            max-width: 800px;
-            width: 100%;
             text-align: center;
-            z-index: 10;
-            position: relative;
         }
-
-.logo-container {
-            margin-bottom: 3rem;
-        }
-
 
         .logo-image {
-            width: 200px;
-            height: 200px;
+            width: 400px;
+            height: 337px;
             object-fit: cover;
             border-radius: 10px;
             z-index: 2;
-        }
-
-        /* Fallback soccer ball design if no image */
-        .logo-icon::before {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            background: #ffffff;
-            border-radius: 50%;
-            top: 20px;
-            right: 20px;
-            box-shadow: -10px 10px 0 #000000;
-            z-index: 1;
-        }
-
-        .logo-icon::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-left: 25px solid transparent;
-            border-right: 25px solid transparent;
-            border-top: 35px solid #ffffff;
-            bottom: 15px;
-            left: 35px;
-            transform: rotate(-45deg);
-            z-index: 1;
-        }
-
-        /* Hide fallback design when image is present */
-        .logo-icon:has(.logo-image)::before,
-        .logo-icon:has(.logo-image)::after {
-            display: none;
-        }
-
-        .tagline {
-            font-family: 'Ubuntu', sans-serif;
-            font-size: 1.5rem;
-            color: #666666;
-            margin-bottom: 3rem;
-            font-weight: 300;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 0.5s forwards;
         }
 
         @keyframes fadeInUp {
@@ -118,7 +93,6 @@
             background: #F9F9F9;
             border-radius: 20px;
             padding: 2rem;
-            
             width: 100%;
             max-width: 100%;
         }
@@ -170,7 +144,7 @@
         .email-form {
             opacity: 0;
             animation: fadeInUp 1s ease-out 1.5s forwards;
-            margin-bottom:3rem;
+            margin-bottom: 3rem;
         }
 
         .form-title {
@@ -186,6 +160,7 @@
             color: #666666;
             margin-bottom: 2rem;
             font-size: 1rem;
+            line-height: 1.2;
         }
 
         .input-group {
@@ -242,7 +217,8 @@
         .submit-btn:active {
             transform: translateY(0);
         }
- .submit-btn::after {
+        
+        .submit-btn::after {
             content: '';
             width: 16px;
             height: 16px;
@@ -264,51 +240,6 @@
             border: 1px solid rgba(74, 222, 128, 0.3);
         }
 
-        .social-links {
-            opacity: 0.8;
-            text-align: center;
-        }
-
-        .social-title {
-            color: #6c757d;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .social-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6c757d;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 1px solid #e9ecef;
-            font-size: 1.2rem;
-        }
-
-        .social-icon:hover {
-            background: #000000;
-            color: #ffffff;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .social-icon svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-
         @media (max-width: 768px) {
             .logo img { max-height: 80px; }
             .tagline { font-size: 1.2rem; }
@@ -322,7 +253,6 @@
             .submit-btn { min-width: 100%; }
         }
         @media (max-width: 480px) {
-            .container { padding: 1rem; }
             .email-form { padding: 2rem 1.5rem; }
             .countdown-container { padding: 2rem 1.5rem; }
             .countdown { gap: 1rem; }
@@ -339,15 +269,51 @@
     </style>
 </head>
 <body>
-    <div class="hero-section">
+    <!-- Top Section -->
+    <section class="logoSection">
+        <img src="./img/logo.png" alt="Real Futbol Logo" class="logo-image">
+    </section>
+
+    <!-- Hero Section -->
+    <section class="heroContainer">
+        <section class="heroSection">
+            <h1>
+                The Evolution of Soccer Training <span class="highlight">Starts Here</span>
+            </h1>
+            <h2 class="countdown-title">
+                Generic programs are out<span class="dot">.</span> Real Futbol is in<span class="dot">.</span>
+            </h2>
+            <p class="subtext">
+                We're changing the way soccer players learn—blending fun, high-energy training with top coaching and a personalized approach in a space built just for you. Real Futbol helps you reach your goals faster, on and off the pitch.
+            </p>
+        </section>
+    </section>
+
+    <!-- Bottom Section -->
+    <div class="heroContainer">
         <div class="container">
-            <div class="logo-container">
-                <div class="logo-icon">
-                    <!-- Replace src with your actual image URL -->
-                    <img src="https://cdn.prod.website-files.com/6872a43e34e6bcf716b8339e/6872e55c403ef4a65e17cda8_Artboard%202%20copy.png" alt="Real Futbol Logo" class="logo-image">
+            <!-- Email -->
+            <div class="email-form">
+                <h2 class="form-title">We'll let you know</h2>
+                <p class="form-subtitle">Stay up to date on our pre-launch activities and updates.</p>
+                
+                <form id="emailForm" action="https://real-futbol.us22.list-manage.com/subscribe/post?u=79604022e2528cbdbad290a1c&amp;id=d50e4794e1&amp;f_id=00eec2e1f0" method="post" name="mc-embedded-subscribe-form" target="_blank">
+                    <div class="input-group">
+                        <input type="email" class="email-input" name="EMAIL" placeholder="Enter your email address" required>
+                        <!-- Real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                        <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                            <input type="text" name="b_79604022e2528cbdbad290a1c_d50e4794e1" tabindex="-1" value="">
+                        </div>
+                        <button type="submit" class="submit-btn" name="subscribe">Sign up for updates</button>
+                    </div>
+                </form>
+                
+                <div class="success-message" id="successMessage">
+                    🎉 Welcome to the Real Futbol family! We'll keep you updated on our launch.
                 </div>
             </div>
-            
+
+            <!-- Countdown Timer -->
             <div class="countdown-container">
                 <h2 class="countdown-title">Launch Countdown</h2>
                 <div class="countdown">
@@ -369,53 +335,13 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="email-form">
-                <h2 class="form-title">Level up!</h2>
-                <p class="form-subtitle">Be the first to experience Real Futbol when we launch</p>
-                
-                <form id="emailForm" action="https://real-futbol.us22.list-manage.com/subscribe/post?u=79604022e2528cbdbad290a1c&amp;id=d50e4794e1&amp;f_id=00eec2e1f0" method="post" name="mc-embedded-subscribe-form" target="_blank">
-                    <div class="input-group">
-                        <input type="email" class="email-input" name="EMAIL" placeholder="Enter your email address" required>
-                        <!-- Real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                        <div style="position: absolute; left: -5000px;" aria-hidden="true">
-                            <input type="text" name="b_79604022e2528cbdbad290a1c_d50e4794e1" tabindex="-1" value="">
-                        </div>
-                        <button type="submit" class="submit-btn" name="subscribe">Stay Tuned</button>
-                    </div>
-                </form>
-                
-                <div class="success-message" id="successMessage">
-                    🎉 Welcome to the Real Futbol family! We'll keep you updated on our launch.
-                </div>
-            </div>
-            
-            <div class="social-links">
-                <p class="social-title">Follow our journey</p>
-                <div class="social-icons">
-                    <a href="#" class="social-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
         </div>
     </div>
 
+
     <script>
         // Countdown Timer
-        const launchDate = new Date('2025-08-15T00:00:00').getTime();
+        const launchDate = new Date('2025-09-01T00:00:00').getTime();
         
         function updateCountdown() {
             const now = new Date().getTime();
