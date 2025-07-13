@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Futbol - Coming Soon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #333333;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+           
+            pointer-events: none;
+        }
+
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+.logo-container {
+            margin-bottom: 3rem;
+        }
+
+
+        .logo-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            z-index: 2;
+        }
+
+        /* Fallback soccer ball design if no image */
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: #ffffff;
+            border-radius: 50%;
+            top: 20px;
+            right: 20px;
+            box-shadow: -10px 10px 0 #000000;
+            z-index: 1;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-top: 35px solid #ffffff;
+            bottom: 15px;
+            left: 35px;
+            transform: rotate(-45deg);
+            z-index: 1;
+        }
+
+        /* Hide fallback design when image is present */
+        .logo-icon:has(.logo-image)::before,
+        .logo-icon:has(.logo-image)::after {
+            display: none;
+        }
+
+        .tagline {
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 1.5rem;
+            color: #666666;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .countdown-container,
+        .email-form {
+            background: #F9F9F9;
+            border-radius: 20px;
+            padding: 2rem;
+            
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .countdown-container {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+            margin-bottom: 1.5rem;
+        }
+
+        .countdown-title {
+            font-family: 'Futura', 'Ubuntu', sans-serif;
+            font-size: 1.5rem;
+            color: #333333;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .countdown-number {
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333333;
+            display: block;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .countdown-label {
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 0.9rem;
+            color: #666666;
+            letter-spacing: 1px;
+            font-weight: medium;
+        }
+
+        .email-form {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.5s forwards;
+            margin-bottom:3rem;
+        }
+
+        .form-title {
+            font-family: 'Futura', 'Ubuntu', sans-serif;
+            font-size: 1.5rem;
+            color: #333333;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .form-subtitle {
+            font-family: 'Ubuntu', sans-serif;
+            color: #666666;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .email-input {
+            flex: 1;
+            min-width: 350px;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-family: 'Ubuntu', sans-serif;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333333;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .email-input::placeholder {
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        .email-input:focus {
+            border-color: #333333;
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.02);
+        }
+
+        .submit-btn {
+            padding: 1rem 1rem;
+            font-size: 1rem;
+            font-weight: bold;
+            font-family: 'Ubuntu', sans-serif;
+            color: #ffffff;
+            background: #000000;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            min-width: 200px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+ .submit-btn::after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            background: currentColor;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E") no-repeat center;
+            mask-size: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .success-message {
+            display: none;
+            color: #4ade80;
+            font-weight: bold;
+            font-family: 'Ubuntu', sans-serif;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(74, 222, 128, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+
+        .social-links {
+            opacity: 0.8;
+            text-align: center;
+        }
+
+        .social-title {
+            color: #6c757d;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+            font-size: 1.2rem;
+        }
+
+        .social-icon:hover {
+            background: #000000;
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        @media (max-width: 768px) {
+            .logo img { max-height: 80px; }
+            .tagline { font-size: 1.2rem; }
+            .countdown { gap: 1rem; }
+            .countdown-number { font-size: 2rem; }
+            .input-group { flex-direction: column; }
+            .email-input { 
+                min-width: 100%; 
+                width: 100%;
+            }
+            .submit-btn { min-width: 100%; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 1rem; }
+            .email-form { padding: 2rem 1.5rem; }
+            .countdown-container { padding: 2rem 1.5rem; }
+            .countdown { gap: 1rem; }
+            .countdown-number { font-size: 2.5rem; }
+            .countdown-title { font-size: 1.3rem; }
+            .countdown-item { min-width: 50px; }
+        }
+
+        @media (max-width: 320px) {
+            .countdown { gap: 0.5rem; }
+            .countdown-number { font-size: 2rem; }
+            .countdown-item { min-width: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <!-- Replace src with your actual image URL -->
+                    <img src="https://cdn.prod.website-files.com/6872a43e34e6bcf716b8339e/6872e55c403ef4a65e17cda8_Artboard%202%20copy.png" alt="Real Futbol Logo" class="logo-image">
+                </div>
+            </div>
+            
+            <div class="countdown-container">
+                <h2 class="countdown-title">Launch Countdown</h2>
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">00</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="email-form">
+                <h2 class="form-title">Level up!</h2>
+                <p class="form-subtitle">Be the first to experience Real Futbol when we launch</p>
+                
+                <form id="emailForm" action="https://real-futbol.us22.list-manage.com/subscribe/post?u=79604022e2528cbdbad290a1c&amp;id=d50e4794e1&amp;f_id=00eec2e1f0" method="post" name="mc-embedded-subscribe-form" target="_blank">
+                    <div class="input-group">
+                        <input type="email" class="email-input" name="EMAIL" placeholder="Enter your email address" required>
+                        <!-- Real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                        <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                            <input type="text" name="b_79604022e2528cbdbad290a1c_d50e4794e1" tabindex="-1" value="">
+                        </div>
+                        <button type="submit" class="submit-btn" name="subscribe">Stay Tuned</button>
+                    </div>
+                </form>
+                
+                <div class="success-message" id="successMessage">
+                    🎉 Welcome to the Real Futbol family! We'll keep you updated on our launch.
+                </div>
+            </div>
+            
+            <div class="social-links">
+                <p class="social-title">Follow our journey</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Countdown Timer
+        const launchDate = new Date('2025-08-15T00:00:00').getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            if (distance < 0) {
+                document.querySelector('.countdown-title').textContent = 'LAUNCHED!';
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+            }
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Email form submission with AJAX to Mailchimp
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = this.querySelector('.email-input').value;
+            const btn = this.querySelector('.submit-btn');
+            const successMsg = document.getElementById('successMessage');
+            
+            // Validate email
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            // Show loading state
+            btn.textContent = 'Joining...';
+            btn.disabled = true;
+            
+            // Submit to Mailchimp using AJAX
+            const formData = new FormData();
+            formData.append('EMAIL', email);
+            formData.append('u', '79604022e2528cbdbad290a1c');
+            formData.append('id', 'd50e4794e1');
+            formData.append('f_id', '00eec2e1f0');
+            
+            // Use JSONP to avoid CORS issues
+            const script = document.createElement('script');
+            const callbackName = 'mailchimpCallback' + Date.now();
+            
+            window[callbackName] = function(data) {
+                // Clean up
+                document.head.removeChild(script);
+                delete window[callbackName];
+                
+                // Show success regardless of response (Mailchimp always returns success for JSONP)
+                successMsg.style.display = 'block';
+                btn.textContent = 'Joined!';
+                btn.style.background = 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)';
+                btn.style.color = '#ffffff';
+                
+                // Reset form after 3 seconds
+                setTimeout(() => {
+                    document.getElementById('emailForm').reset();
+                    btn.textContent = 'Stay Tuned';
+                    btn.disabled = false;
+                    btn.style.background = 'linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%)';
+                    btn.style.color = '#0f4c3a';
+                    successMsg.style.display = 'none';
+                }, 3000);
+            };
+            
+            script.src = `https://real-futbol.us22.list-manage.com/subscribe/post-json?u=79604022e2528cbdbad290a1c&id=d50e4794e1&f_id=00eec2e1f0&EMAIL=${encodeURIComponent(email)}&c=${callbackName}`;
+            document.head.appendChild(script);
+        });
+        
+        // Add some interactive elements
+        document.querySelectorAll('.countdown-number').forEach(number => {
+            number.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            number.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+
+</body>
+</html>
