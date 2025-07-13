@@ -21,12 +21,14 @@
         }
 
         .logoSection {
-            text-align: center;
             background: #000000;
-            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .heroContainer {
+            text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -46,11 +48,12 @@
             font-weight: 800;
             line-height: 1.2;
             color: #000000;
-            padding-bottom: 10px;
+            padding-bottom: 24px;
         }
 
         .heroSection > h2 {
             font-size: 1.25em;
+            line-height: 1.5;
         }
 
         .highlight {
@@ -71,15 +74,10 @@
             line-height: 1.6;
         }
 
-        .container {
-            text-align: center;
-        }
-
         .logo-image {
             width: 400px;
             height: 337px;
             object-fit: cover;
-            border-radius: 10px;
             z-index: 2;
         }
 
@@ -265,6 +263,13 @@
             .countdown { gap: 0.5rem; }
             .countdown-number { font-size: 2rem; }
             .countdown-item { min-width: 40px; }
+            .logo-image {
+                width: 200px;
+                height: 169px;
+                object-fit: cover;
+                border-radius: 10px;
+                z-index: 2;
+            }
         }
     </style>
 </head>
@@ -338,6 +343,20 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <section class="heroContainer">
+        <section class="heroSection">
+            <h1>
+                The Evolution of Soccer Training <span class="highlight">Starts Here</span>
+            </h1>
+            <h2 class="countdown-title">
+                Generic programs are out<span class="dot">.</span> Real Futbol is in<span class="dot">.</span>
+            </h2>
+            <p class="subtext">
+                We're changing the way soccer players learn—blending fun, high-energy training with top coaching and a personalized approach in a space built just for you. Real Futbol helps you reach your goals faster, on and off the pitch.
+            </p>
+        </section>
+    </section>
 
     <script>
         // Countdown Timer
